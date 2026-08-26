@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The most popular albums</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>The most popular albums</h1>
+        <div class="grid-container" id="albumGrid">กำลังโหลดข้อมูล...</div>
+    </div>
+
+    <script>
+        const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
+            ? '/api/albums' 
+            : 'http://localhost:3000/api/albums';
+
+        fetch(API_URL)
+            .then(response => response.json())
+            .then(data => {
+                const grid = document.getElementById('albumGrid');
+                
+                if (!Array.isArray(data)) {
+                    grid.innerHTML = `<p style="color:red;">เกิดข้อผิดพลาด: ${data.error || 'ไม่สามารถโหลดข้อมูลได้'}</p>`;
+                    return;
+                }
+
+                grid.innerHTML = data.map(album => `
+                    <div class="card">
+                        <img src="${album.cover}" alt="${album.album} cover" onerror="this.src='https://via.placeholder.com/300x320?text=No+Image'">
+                        <div class="card-content">
+                            <h3>${album.song}</h3>
+                            <p>Album: ${album.album} (${album.year})</p>
+                            <p>Artist: ${album.artist}</p>
+                            <p>Genre: ${album.genre}</p>
+                        </div>
+                    </div>
+                `).join('');
+            })
+            .catch(err => {
+                document.getElementById('albumGrid').innerHTML = `<p style="color:red;">ไม่สามารถเชื่อมต่อ Server ได้ (${err.message})</p>`;
+            });
+    </script>
+</body>
+</html>
