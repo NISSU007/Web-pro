@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <title>Bookstore Management</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Bookstore Management</h1>
+        
+        <div class="top-bar">
+            <a href="add.html" class="btn btn-add">+ เพิ่มหนังสือ</a>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>ชื่อหนังสือ</th>
+                    <th>ผู้แต่ง</th>
+                    <th>หมวดหมู่</th>
+                    <th>ราคา</th>
+                    <th>สต็อก</th>
+                    <th>จัดการ</th>
+                </tr>
+            </thead>
+            <tbody id="bookList"></tbody>
+        </table>
+    </div>
+
+    <script>
+        const API_URL = 'http://localhost:3000/api/books';
+
+        function loadBooks() {
+            fetch(API_URL)
+                .then(res => res.json())
+                .then(data => {
+                    const tbody = document.getElementById('bookList');
+                    tbody.innerHTML = '';
+                    data.forEach(book => {
+                        tbody.innerHTML += `
+                            <tr>
+                                <td><b>${book.id}</b></td>
+                                <td>${book.title}</td>
+                                <td>${book.author}</td>
+                                <td><span class="badge">${book.category}</span></td>
+                                <td>${Number(book.price).toFixed(2)} ฿</td>
+                                <td>${book.stock}</td>
+                                <td>
+                                    <a href="edit.html?id=${book.id}" class="btn btn-edit">แก้ไข</a>
+                                    <button onclick="deleteBook('${book.id}')" class="btn btn-delete">ลบ</button>
+                                </td>
+                            </tr>
+                        `;
+                    });
+                })
+                .catch(err => console.error("Error loading data:", err));
+        }
+
+        function deleteBook(id) {
+            if (confirm('ต้องการลบหนังสือเล่มนี้หรือไม่?')) {
+                fetch(API_URL + '/' + id, { method: 'DELETE' })
+                    .then(res => res.json())
+                    .then(() => loadBooks());
+            }
+        }
+
+        loadBooks();
+    </script>
+</body>
+</html>
