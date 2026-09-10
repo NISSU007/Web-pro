@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Detail</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <div class="detail-container">
+        <div class="detail-card">
+            <h2>Product <%= item.id %> Detail</h2>
+
+            <img src="http://webdev.it.kmitl.ac.th:4000<%= item.image %>" alt="<%= item.name %>">
+
+            <h3><%= item.name %></h3>
+            <p class="info-text">Description : <%= item.description %></p>
+            <br>
+            <p class="info-text">Price : <%= item.price %></p>
+            <br>
+            <p class="info-text">Amount : <%= item.amount || item.quantity %></p>
+
+            <a href="/" class="btn-back">Go Back</a>
+        </div>
+    </div>
+</body>
+
+</html>

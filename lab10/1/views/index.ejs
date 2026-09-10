@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Products</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="page-title">My Products</h1>
+
+        <div class="grid">
+            <% data.forEach((item) => { %>
+                <div class="card">
+                    <div class="card-img-wrapper">
+                        <img src="http://webdev.it.kmitl.ac.th:4000<%= item.image %>" alt="<%= item.name %>">
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">
+                            <%= item.name %>
+                        </h3>
+                        <p class="card-text">
+                            <%= item.description %>
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="/detail/<%= item.id %>" class="btn-detail">Detail</a>
+                    </div>
+                </div>
+            <% }); %>
+        </div>
+    </div>
+</body>
+
+</html>
