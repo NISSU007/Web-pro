@@ -15,7 +15,6 @@ app.get('/', (req, res) => {
     fetch(endpoint)
         .then(response => response.json())
         .then(wsdata => {
-            // แปลง id และ image ใน index.js เพื่อให้หน้า EJS เรียกใช้ item.id ได้ง่าย
             const cleanedData = wsdata.map(item => ({
                 ...item,
                 id: item.id || item.product_id || item._id,
@@ -41,7 +40,6 @@ app.get('/detail/:id', (req, res) => {
                 return res.status(404).send("ไม่พบข้อมูลที่ระบุ");
             }
 
-            // แปลงข้อมูลให้พร้อมแสดงผล
             itemData.id = itemData.id || itemData.product_id || id;
             if (itemData.image && !itemData.image.startsWith('/')) {
                 itemData.image = `/${itemData.image}`;
