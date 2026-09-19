@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ระบบคลังสินค้าไอที</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="container card">
+        <h2>ระบบคลังสินค้าไอที (IT Inventory)</h2>
+        
+        <div class="add-section">
+            <p>เพิ่มสินค้าใหม่</p>
+            <form action="/add" method="POST" class="form-inline">
+                <input type="text" name="name" placeholder="ชื่อสินค้า" required>
+                <input type="text" name="category" placeholder="หมวดหมู่" required>
+                <input type="number" name="price" placeholder="ราคา (บาท)" required>
+                <button type="submit" class="btn btn-blue">บันทึกสินค้า</button>
+            </form>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>ชื่อสินค้า</th>
+                    <th>หมวดหมู่</th>
+                    <th>ราคา (บาท)</th>
+                    <th>จัดการ</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% products.forEach(p => { %>
+                <tr>
+                    <td><%= p.id %></td>
+                    <td><%= p.name %></td>
+                    <td><%= p.category %></td>
+                    <td><%= p.price.toLocaleString() %></td>
+                    <td class="action-buttons">
+                        <a href="/edit/<%= p.id %>" class="btn btn-edit">แก้ไข</a>
+                        <form action="/delete/<%= p.id %>" method="POST" style="display:inline;">
+                            <button type="submit" class="btn btn-delete" onclick="return confirm('ยืนยันการลบสินค้ารายการนี้?');">ลบ</button>
+                        </form>
+                    </td>
+                </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
