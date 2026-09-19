@@ -1,0 +1,105 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #333;
+    /* เปลี่ยน margin เป็น 0 และใช้ padding ดันขอบแทนเล็กน้อย */
+    margin: 0;
+    padding: 40px 20px; 
+}
+
+.container {
+    /* กำหนดความกว้างสูงสุด และใช้ margin: auto เพื่อให้อยู่ตรงกลาง */
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+h2 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th, td {
+    border: 1px solid #888;
+    padding: 10px 12px;
+    text-align: left;
+    font-size: 15px;
+}
+
+th {
+    font-weight: bold;
+    background-color: #fff;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 6px;
+    font-size: 14px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="date"],
+.form-group textarea {
+    width: 100%;
+    padding: 8px 10px;
+    box-sizing: border-box;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 14px;
+    color: #555;
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+::placeholder {
+    color: #aaa;
+    font-size: 13px;
+}
+
+.btn-add {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: none; 
+    display: inline-block;
+}
+
+.btn-submit {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.btn-add:hover,
+.btn-submit:hover {
+    background-color: #45a049;
+}
