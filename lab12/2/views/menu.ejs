@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AUNTIE-AUN Restaurant - Menu</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/menu" class="active">Menu</a>
+        <a href="/cart">Cart</a>
+    </nav>
+
+    <div class="container">
+        <h1 class="title">AUNTIE-AUN Restaurant</h1>
+
+        <div class="menu-grid">
+            <% menuItems.forEach(item => { 
+                const itemId = item._id || item.id;
+                const itemImg = item.image || item.img || item.imageUrl || '';
+            %>
+                <div class="card">
+                    <img src="http://webdev.it.kmitl.ac.th:4000<%= itemImg %>" alt="<%= item.name %>">
+                    <div class="card-body">
+                        <h3><%= item.name %></h3>
+                        <p class="description"><%= item.description %></p>
+                        <div class="card-footer">
+                            <span class="price"><%= item.price %> THB</span>
+                            <a href="/add-to-cart/<%= itemId %>" class="btn-add">Add to Cart</a>
+                        </div>
+                    </div>
+                </div>
+            <% }); %>
+        </div>
+    </div>
+</body>
+</html>
