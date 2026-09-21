@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <title>รายการสินค้า</title>
+  <link rel="stylesheet" href="/menu.css">
+</head>
+<body>
+  <h1>ร้านค้าสมาร์ทโฟน</h1>
+  <a href="/cart" class="cart-link">🛒 ดูตะกร้าสินค้า (<strong><%= cartCount %></strong> ชิ้น)</a>
+
+  <div class="product-grid">
+    <% data.forEach((item) => { %>
+      <div class="product-card">
+        <img src="https://webdev.it.kmitl.ac.th/labdocs/unit12/phone-images/<%= item.pimage %>" alt="<%= item.name %>">
+        <h3><%= item.name %></h3>
+        <p><strong>ราคา:</strong> $<%= item.price %></p>
+        <p><small><%= item.storage %> | <%= item.camera %></small></p>
+        <a href="/add-to-cart/<%= item.id %>" class="btn">ใส่ตะกร้า</a>
+      </div>
+    <% }); %>
+  </div>
+</body>
+</html>
