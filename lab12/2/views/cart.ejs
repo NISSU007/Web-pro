@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AUNTIE-AUN Restaurant - Cart</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/menu">Menu</a>
+        <a href="/cart" class="active">Cart</a>
+    </nav>
+
+    <div class="cart-container">
+        <h2 class="cart-title">List of items</h2>
+
+        <table class="cart-table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Item</th>
+                    <th>Qty</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if (cartItems.length === 0) { %>
+                    <tr>
+                        <td colspan="4" style="text-align: center; color: #777;">Your cart is empty.</td>
+                    </tr>
+                <% } else { %>
+                    <% cartItems.forEach((item, index) => { %>
+                        <tr class="<%= index % 2 === 1 ? 'even-row' : '' %>">
+                            <td><%= index + 1 %></td>
+                            <td class="item-name"><%= item.name %></td>
+                            <td>1</td>
+                            <td class="item-price"><%= item.price %></td>
+                        </tr>
+                    <% }); %>
+                <% } %>
+            </tbody>
+        </table>
+
+        <div class="total-section">
+            <h3>total price : <%= totalPrice %> THB</h3>
+            <% if (cartItems.length > 0) { %>
+                <a href="/confirm-order" class="btn-confirm">Confirm Order</a>
+            <% } %>
+        </div>
+    </div>
+</body>
+</html>
