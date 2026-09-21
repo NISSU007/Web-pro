@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <title>ตะกร้าสินค้า</title>
+  <link rel="stylesheet" href="/cart.css">
+</head>
+<body>
+  <h1>ตะกร้าสินค้าของคุณ</h1>
+
+  <% if (data.length === 0) { %>
+    <p>ไม่มีสินค้าอยู่ในตะกร้า</p>
+  <% } else { %>
+    <table>
+      <thead>
+        <tr>
+          <th>รหัสสินค้า</th>
+          <th>ชื่อสินค้า</th>
+          <th>ราคาต่อชิ้น</th>
+          <th>จำนวน</th>
+          <th>ราคารวม</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% data.forEach((item) => { %>
+          <tr>
+            <td><%= item.id %></td>
+            <td><%= item.name %></td>
+            <td>$<%= item.price %></td>
+            <td><%= item.quantity %></td>
+            <td>$<%= item.subtotal %></td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+
+    <h3>ราคารวมทั้งหมด: $<%= total %></h3>
+  <% } %>
+
+  <div class="actions">
+    <a href="/menu" class="btn-back">เลือกสินค้าเพิ่ม</a>
+    <% if (data.length > 0) { %>
+      <a href="/clear-cart" class="btn-clear">ล้างตะกร้าสินค้า</a>
+    <% } %>
+  </div>
+</body>
+</html>
