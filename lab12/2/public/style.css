@@ -106,6 +106,7 @@ body {
     background: white;
     padding: 20px;
     border-radius: 6px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
 
 .cart-title {
@@ -132,10 +133,6 @@ body {
 
 .cart-table td.item-name {
     text-align: left;
-}
-
-.cart-table td.item-price {
-    text-align: right;
 }
 
 .even-row {
