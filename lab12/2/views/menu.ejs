@@ -17,11 +17,18 @@
 
         <div class="menu-grid">
             <% menuItems.forEach(item => { 
-                const itemId = item._id || item.id;
-                const itemImg = item.image || item.img || item.imageUrl || '';
+                // เพิ่ม item.product_id เข้าไปจุดแรก
+                const itemId = item.product_id || item.id || item._id || item.food_id || item.foodId || '';
+
+                // จัดการ URL ของรูปภาพ (API ส่ง image_url มาอยู่แล้ว)
+                let itemImg = item.image_url || item.image || item.img || item.imageUrl || '';
+                if (itemImg && !itemImg.startsWith('http')) {
+                    if (!itemImg.startsWith('/')) itemImg = '/' + itemImg;
+                    itemImg = 'http://webdev.it.kmitl.ac.th:4000' + itemImg;
+                }
             %>
                 <div class="card">
-                    <img src="http://webdev.it.kmitl.ac.th:4000<%= itemImg %>" alt="<%= item.name %>">
+                    <img src="<%= itemImg %>" alt="<%= item.name %>">
                     <div class="card-body">
                         <h3><%= item.name %></h3>
                         <p class="description"><%= item.description %></p>
